@@ -68,4 +68,10 @@ db.comments.find({username: "GoodGuyGreg"})
 db.comments.find({username: "ScumbagSteve"})
 #8.find all comments belonging to the post "Reports a bug in your code"
 db.comments.find({post :"61e5c67bc04247c55c3dff82"}).pretty
+# Created a new database named "population" and created a new collection "zipcodes" ,inserted json data in zipcodes using mongoDB compass.
+
+# ATLANTA Population
+1.db.zipcodes.aggregate([{$match:{city:"ATLANTA",state:"GA"}}]).pretty()
+2.
+3.db.zipcodes.aggregate([{$group:{_id:"$state",population:{$sum:"$pop"}}}])
 
