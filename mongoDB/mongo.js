@@ -72,6 +72,41 @@ db.comments.find({post :"61e5c67bc04247c55c3dff82"}).pretty
 
 # ATLANTA Population
 1.db.zipcodes.aggregate([{$match:{city:"ATLANTA",state:"GA"}}]).pretty()
-2.
-3.db.zipcodes.aggregate([{$group:{_id:"$state",population:{$sum:"$pop"}}}])
+2.db.zipcodes.aggregate([{$match:{city:"ATLANTA",state:"GA"}}]).pretty()
+3.db.zipcodes.aggregate([{$group:{_id:{ATLANTA:"$city"},zipcodes:{"$sum":1}}}])
+4.db.zipcodes.aggregate([{$group:{_id:{ATLANTA:"$city"},population:{$sum:"$pop"}}}])
+#population by state
+1.db.zipcodes.aggregate([{$group:{_id:"$state",population:{$sum:"$pop"}}}])
+2.db.zipcodes.aggregate([{ $sort : { "pop" : -1 } }])
+3.db.zipcodes.find({},{"city":1,"pop":1}).sort({"pop":-1}).limit(3)
+#population by state
+1.db.zipcodes.aggregate([{$group:{_id:{state:"$state",city:"$city",population:{$sum:"$pop"}}}}])
+2.db.zipcodes.aggregate([{ $sort : { "pop" : -1 } }])
 
+# Day 3
+#created a new database "restaurants", collection "address", inserted JSON data in address collection using mongoDB compass.
+db.addresses.find().pretty()
+db.addresses.find({ },{ restaurant_id:1,name:1, borough:1, cuisine:1})
+db.addresses.find({ },{ restaurant_id:1,name:1, borough:1, cuisine:1,_id:0})
+db.addresses.find({"borough" : "Bronx"}).limit(5)
+db.addresses.find({"borough" : "Bronx"})
+db.addresses.find({"borough" : "Bronx"}).skip(5).limit(5)
+addresses.find({"grades.score": {$gt: 90}}
+db.addresses.find({$and : [{"grades.score" : {"$gt" : 80}},{"grades.score" : {"$lt" : 100}}]})
+db.addresses.find({$and : [{"grades.score" : {"$gt" : 80}},{"grades.score" : {"$lt" : 100}}]})
+db.addresses.find({"address.coord.0" : {$lt : -95.754168}})
+db.addresses.find({$and : [{"cuisine" : {$ne : "American "}}, {"address.coord.0" : {$lt : -65.754168}}, {"grades.score" : {$gt : 70}}]})
+db.addresses.find({$and : [{"cuisine" : {$ne : "American "}}, {"grades.grade" : "A"}, {"borough" : {$ne : "Brooklyn "}}]}).sort({cuisine : -1})
+db.addresses.find({"name" : { $regex: "Wil"}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find({"name" : { $regex: "ces$"}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find({"name" : { $regex: "Reg"}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find({borough: "Bronx", cuisine: {$in: ["American ","Chinese"]}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find({$or: [{"borough": "Staten Island"}, {"borough": "Bronxor Brooklyn"}, {"borough": "Queens"}]}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find( {borough: {$nin: ["Staten Island","Queens","Bronx","Brooklyn"]}} , {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find({"grades.score": {$lte: 10}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+db.addresses.find({},{_id:0, name:1}).sort( {name: 1})
+db.addresses.find({},{_id:0, name:1}).sort( {name: -1})
+db.addresses.find({}, {_id:0, cuisine:1, borough:1}).sort({cuisine: 1, borough: -1})
+db.addresses.find({"address.coord": {$type: "double"}}, {_id:0, address:1})
+db.addresses.find({name: {$regex: /^Mad.*/}},{_id:0, name:1, borough:1, "address.coord":1, cuisine:1})
+db.addresses.find({name: {$regex: /mon/}},{_id:0, name:1, borough:1, "address.coord":1, cuisine:1})
