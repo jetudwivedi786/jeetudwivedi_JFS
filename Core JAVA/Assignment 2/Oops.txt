@@ -1,0 +1,285 @@
+//1-write a singleton class. confirm that singleton class cannot be inherited.
+Ans-Singleton class is a class in which onle one object can be created.For singleton class we have to make
+private constructor and a static method that has a return type of this singleton class.
+Singleton class can not be inheritate because all constructors ogf it private.
+
+ Example- public class Singleton {
+    public static void main(String[] args) {
+        abc a=new abc();
+        a.test1();
+    }
+}
+class TestSingleton{
+    private void test(){
+        System.out.println("hello");
+
+    }
+    private void test1(){
+        System.out.println("world");
+    }
+
+
+}
+class abc extends TestSingleton{
+    public void msg(){
+        System.out.println("hii");
+    }
+}
+
+
+}
+
+// 2
+
+          import java.util.Scanner;
+          
+          public class Salary {
+                    public static void main(String[] args) {
+                      Employee e = new Employee();
+                      e.getSalary();
+                      Manager m = new Manager();
+                      m.getSalary();
+                      Labour l = new Labour();
+                      l.getSalary();
+                }
+          }
+
+          class Employee{
+                  Scanner input = new Scanner(System.in);
+                  int s = 20000;
+                  void getSalary() {
+                    System.out.println("Salary of the employee is: "+ s);
+               }
+          }
+
+          class Manager extends Employee{
+                Scanner input = new Scanner(System.in);
+                void getSalary() {
+                  System.out.print("Enter the incentives: ");
+                  int i = input.nextInt();
+                  System.out.println("Total Salary of Manager is"+(super.s+i));
+              }
+          }
+
+          class Labour extends Employee{
+                Scanner input = new Scanner(System.in);
+                void getSalary() {
+                  System.out.print("Enter the extra time of the labour in month: ");
+                  int i = input.nextInt();
+                  int x = super.s/ 12;
+                  int y = x*i;
+                  System.out.println("Total salary of labour is: "+(super.s+y));
+              }
+          }
+          
+  //3        
+                                                
+                         
+      import java.util.Scanner;
+
+      public class Bank {
+            public static void main(String[] args) {
+              Fixed x = new Fixed();
+              x.fixedAccount();
+              int num1 = x.f;
+              Current y = new Current();
+              y.currentAccount();
+              int num2 = y.c;
+              totalCash(num1,num2);
+            }
+
+            public static void totalCash(int num1, int num2) {
+              int sum = num1+ num2;
+              System.out.println("Total cash in the bank is: "+sum);
+            }
+          }
+          
+      class Fixed{
+            int f;
+            Scanner input = new Scanner(System.in);
+            int fixedAccount() {
+              System.out.print("Total fixed amount in the bank: ");
+              f = input.nextInt();
+              return f;
+            }
+          }
+      class Current{
+            int c;
+            Scanner input = new Scanner(System.in);
+            int currentAccount() {
+              System.out.print("Total current amount in the bank: ");
+              c = input.nextInt();
+              return c;
+            }
+        }
+        
+      //5
+ 
+             public class Shape {
+               public static void main(String[] args) {
+                Shapes r = new Rectangle();
+                r.draw();
+                Shapes l = new Line();
+                l.draw();
+              }
+            }
+
+            abstract class Shapes{
+              abstract void draw();
+            }
+
+            class Rectangle extends Shapes{
+              void draw() {
+                System.out.println("Rectangle");
+              }
+            }
+
+            class Line extends Shapes{
+              void draw() {
+                System.out.println("Line");
+              }
+            }
+
+            class Cube extends Shapes{
+              void draw() {
+                System.out.println("Cube");
+              }
+            }
+            
+            
+      //6                                   
+
+            import java.util.Scanner;
+            
+            public class Persist {
+              public static void main(String[] args) {
+                Persistence p = new DatabasePersistence();
+                p.persist();		
+              }
+            }
+
+            abstract class Persistence{
+              abstract void persist();
+            }
+
+            class FilePersistence extends Persistence{
+              Scanner input = new Scanner(System.in);
+              int i;
+              void persist() {
+                i = input.nextInt();
+              }
+            }
+
+            class DatabasePersistence extends Persistence{
+              Scanner input = new Scanner(System.in);
+              int j;
+              void persist() {
+                j = input.nextInt();
+                System.out.println("Persist invoked.");
+              }
+            }
+            
+            
+              //7                        
+
+            import java.util.Scanner;
+
+            public class Dessertshop {
+              public static void main(String[] args) {
+                Scanner input = new Scanner(System.in);
+                System.out.print("Are you a user or owner: ");
+                String str = input.nextLine();
+                str = str.toUpperCase();
+                if(str.matches("OWNER")) {
+                  System.out.println("Please add an iteam: ");
+                  String str1 = input.next();
+                  str1 = str1.toUpperCase();
+                  switch(str1)
+                  {
+                  case "CANDY":
+                    Dessertitem c = new Candy();
+                    c.insert();
+                    break;
+                  case "COOKIE":
+                    Dessertitem c1 = new Cookie();
+                    c1.insert();
+                    break;
+                  case "IceCream":
+                    Dessertitem i = new IceCream();
+                    i.insert();	
+                  }				
+                }		else if(str.matches("USER")) {
+                  System.out.print("Please place your order: ");
+                  String name = input.nextLine();
+                  name = name.toUpperCase();
+                  switch(name)
+                  {
+                  case "CANDY":
+                    Dessertitem d = new Candy();
+                    System.out.print("Place the quantity of candy: ");
+                    int n = input.nextInt();
+                    System.out.print("This is your bill amount in rupees: "+d.getCost(n));
+                    break;
+                  case "COOKIE":
+                    Dessertitem e = new Cookie();
+                    System.out.print("Place the quantity of cookie: ");
+                    int m = input.nextInt();
+                    System.out.print("This is your bill amount in rupees: "+e.getCost(m));
+                    break;
+                  case "IceCream":
+                    Dessertitem f = new IceCream();
+                    System.out.print("Place the quantity of Icecream: ");
+                    int o = input.nextInt();
+                    System.out.print("This is your bill amount in rupees: "+f.getCost(o));
+                    break;
+                  }
+                }		
+              }
+            }
+
+            abstract class Dessertitem{
+              public abstract void insert();
+              public abstract double getCost(int x);
+            }
+
+            class Candy extends Dessertitem{
+              public double getCost(int x) {
+                double i = x*60;
+                return i;
+              }
+
+              @Override
+              public void insert() {
+                System.out.println("Thank you for inserting candy");
+              }
+            }
+
+            class Cookie extends Dessertitem{
+              public double getCost(int x) {
+                double i = x*70;
+                return i;
+              }
+
+              @Override
+              public void insert() {
+                System.out.println("Thank you for adding cookie");
+              }
+            }
+
+            class IceCream extends Dessertitem{
+              public double getCost(int x) {
+                return x;
+              }
+
+              @Override
+              public void insert() {
+                System.out.println("Thank you for adding IceCream");
+              }
+            }
+
+
+
+
+
+
+
