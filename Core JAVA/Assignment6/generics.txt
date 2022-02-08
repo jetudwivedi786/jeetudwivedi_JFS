@@ -1,0 +1,176 @@
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+ 
+ 
+                                                                 // 1
+
+      class Abc {
+          int id;
+          String name;
+          String department;
+          int salary;
+          public Abc(int id, String name, String department, int salary){
+              this.id = id;
+              this.name = name;
+              this.department = department;
+              this.salary = salary;
+          }
+          public String DisplayId(){
+              return ("The id of " + name + " is: " + id);
+          }
+          public String DisplaySal(){
+              return ("The salary of" + name + " is: " + salary);
+          }
+          public String DisplayDep(){
+              return ("Department of " + name + " is: " + department);
+          }
+      }
+      public class generics {
+          public static void main(String[] args) {
+              HashSet<Abc> Employee = new HashSet<>();
+              Abc E1 = new Abc(01,"pranjal","IT",3000 );
+              Abc E2 = new Abc(02,"abhi", "IT", 5000);
+              Abc E3 = new Abc(03,"bhanu", "IT",8000);
+              Abc E4 = new Abc(04,"ajay", "IT",3000);
+              Abc E5 = new Abc(05,"rastogi","IT",7000);
+
+              Employee.add(E1);
+              Employee.add(E2);
+              Employee.add(E3);
+              Employee.add(E4);
+              Employee.add(E5);
+
+              for (Abc d : Employee){
+                  // System.out.println(d.id + " " + d.name + " " + d.department + " " + d.salary);
+                  System.out.println(d.DisplayId());
+                  System.out.println(d.DisplaySal());
+                  System.out.println(d.DisplayDep());
+              }
+          }
+      }
+
+                                                      // 2
+
+
+         import java.util.HashMap;
+         import java.util.Map;
+
+         public class gen2 {
+             public static void main(String[] args) {
+                 HashMap<Integer, Double> hash = new HashMap<>();
+                 hash.put(0, 3.9);
+                 hash.put(1, 3.8);
+                 hash.put(2, 3.8);
+                 hash.put(3, 3.6);
+                 hash.put(4, 3.2);
+                 hash.put(5, 3.5);
+                 hash.put(6, 3.4);
+                 hash.put(7, 3.3);
+                 hash.put(8, 3.2);
+                 hash.put(9, 3.1);
+
+                 for (Map.Entry k: hash.entrySet()){
+                     System.out.println(k.getKey() + " " + k.getValue());
+                 }
+              //   System.out.println(hash);
+             }
+         }
+
+
+                                                      // 3
+
+
+           import java.util.ArrayList;
+
+           public class gen3 {
+               public static void main(String[] args) {
+                   ArrayList<Integer> arrayList = new ArrayList<>();
+                   arrayList.add(54);
+                   arrayList.add(22);
+                   arrayList.add(66);
+                   arrayList.add(98);
+                   arrayList.add(45);
+                   arrayList.add(2,25);
+                   arrayList.add(5,78);
+                   for (int i = 0; i < arrayList.size(); i++){
+                       System.out.println(arrayList.get(i));
+                   }
+           //        System.out.println(arrayList);
+               }
+           }
+
+ 
+ 
+                                               //  4
+                                               
+                                                       (1)
+                                                       
+
+      class def{
+          String  num;
+          String name;
+          public def(String num, String name){
+              this.num = num;
+              this.name = name;
+          }
+          public String defkey(String num){
+              return num;
+          }
+          public String defvalue(String name){
+              return name;
+          }
+      }
+      public class gen4 {
+          public static void main(String[] args) {
+              HashMap<Integer, def> hashMap = new HashMap<>();
+              Scanner sc = new Scanner(System.in);
+
+              def p = new def("654","Harsh");
+              hashMap.put(1,p);
+              for (Map.Entry<Integer, def> entry: hashMap.entrySet()){
+                  int key = entry.getKey();
+                  def value = entry.getValue();
+                  System.out.println(key + " Abcs: ");
+                  System.out.println(value.num + " " + value.name);
+         }
+        }
+      }
+
+
+                                                                        (2)
+
+
+       class def1{
+           String msg;
+           Date date;
+           public def1(String msg, Date date){
+               this.msg = msg;
+               this.date = date;
+           }
+           public String Message(String msg){
+               return this.msg;
+           }
+           public Date getDate(int date){
+               return this.date;
+           }
+       }
+
+       public class gen4 {
+           public static void main(String[] args) {
+               HashMap<Integer, def> hashMap = new HashMap<>();
+               Scanner sc = new Scanner(System.in);
+
+               HashMap<String, def1> hashMap1 = new HashMap<>();
+               java.util.Date date = new java.util.Date();
+               def1 p2 = new def1("Today's Date is: ", date);
+               hashMap1.put("Hey",p2);
+               for (Map.Entry<String, def1> entry : hashMap1.entrySet()){
+                   String key = entry.getKey();
+                   def1 value = entry.getValue();
+                   System.out.println(key);
+                   System.out.println(value.msg + " " + value.date);
+            } 
+         }
+       }
