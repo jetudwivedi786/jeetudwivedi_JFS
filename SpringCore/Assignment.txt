@@ -1,0 +1,53 @@
+// 1.
+
+package com.demo;
+
+public class Address {
+	private String Street;
+	private String City;
+	private String state;
+	private int Zip;
+	private String Country;
+	public Address(String street, String city, String state, int zip, String country) {
+		super();
+		Street = street;
+		City = city;
+		this.state = state;
+		Zip = zip;
+		Country = country;
+	}
+	
+	@Override
+	public String toString() {
+		return "Address [Street=" + Street + ", City=" + City + ", state=" + state + ", Zip=" + Zip + ", Country="
+				+ Country + "]";
+	}
+	
+}
+//2.
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.question1.Address" name="CustAdd">
+		<constructor-arg value="Roosevelt Road" />
+		<constructor-arg value="Chicago" />
+		<constructor-arg value="Illinois" />
+		<constructor-arg value="60054" />
+		<constructor-arg value="US" />
+	</bean>
+
+
+	<bean class="com.question1.Customer" name="Cust">
+		<constructor-arg value="127" />
+		<constructor-arg value="John" />
+		<constructor-arg value="584793020" />
+		<constructor-arg ref="CustAdd" />
+	</bean>
+
+
+</beans>
+
